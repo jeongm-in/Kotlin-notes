@@ -1,25 +1,61 @@
 # Kotlin-notes
 - 071821 initial commit with some notes for future edit
 - 071821 add more code to the inheritance section, add syntax highlighting 
-
-
-# What is Kotlin?
-It seems like Kotlin is Java but more modern
+- 073021 add List, elaborate on new syntax, modify inheritance
 
 # Some new syntax
-- iteration
-  - `repeat` 
-- `when` 
-- `with` 
+## `repeat` 
+  - `repeat(4){do()}` to call `do()` 4 times 
+  
+## `when` 
+  - Pretty cool syntax. Think of switch cases in other languages. `->` operator to set the value of the variable depending on each condition
+  - should specify `else` (or default) condition
+	```kotlin
+        val tipPercentage = when (binding.tipOptions.checkedRadioButtonId) {
+            R.id.option_twenty_percent -> 0.20
+            R.id.option_eighteen_percent -> 0.18
+            else -> 0.15
+        }
 
+	```
+## `with` 
+  - Allows setting a scope for a variable 
+  ```kotlin
+    val myObject = myObject()
+    println("prop_1: ${myObject.prop_1}")
+    println("prop_2: ${myObject.prop_2}")
+    println("prop_3: ${myObject.prop_3}")
+  ```
+  
+  can be written as 
+  
+  ```kotlin
+  val myObject = myObject()
+  with(myObject){
+    println("prop_1: ${prop_1}")
+    println("prop_2: ${prop_2}")
+    println("prop_3: ${prop_3}") 
+  }
+  ```
+  
+## Template literals
+- Using variables in the string
+  - Similar to the JavaScript template literal: `"value is ${var_name}"`
+- Patterns like `%s` also exist
+
+## `val` and `var`
+- `val` for constants, `var` for variables
 
 # Class inheritance
 - Code from https://developer.android.com/codelabs/basic-android-kotlin-training-classes-and-inheritance
 - `abstract`
+  - same as in Java, `abstract` stuff must be implemented in children 
 - `override` 
+  - same as in Java`
 - `open` 
+  - In Kotlin, classes are by default final. In order to extend classes, the parent class must be `abstract` or marked with `open`.  
 - Class constructors
-- 
+- Sample code:
 ```kotlin
 import kotlin.math.PI
 import kotlin.math.sqrt
@@ -86,7 +122,7 @@ fun main(){
         println("Has room? ${hasRoom()}")    
         println("Floor area: ${floorArea()}")
         getRoom()
-		getRoom()
+	getRoom()
     }
     
     with(roundHut){
@@ -95,7 +131,7 @@ fun main(){
         println("Material: ${buildingMaterial}")
         println("Has room? ${hasRoom()}")    
         println("Floor area: ${floorArea()}")
-		getRoom()
+	getRoom()
         getRoom()
         println("Carpet size: ${calculateMaxCarpetSize()}")
 
@@ -116,3 +152,13 @@ fun main(){
 
 }
 ```
+
+
+# List and Mutable List 
+- List is immutable in Kotlin 
+  - `val numbers = List<Int> = listOf(1, 2, 3)`
+- Access list members using `[]` 
+  - but what if that index is invalid? In Java, you would generally use `.get` method which would return null value. 
+  - You'd get `ArrayIndexOutOfBoundsException`.. 
+- `.first()` and `.last()` methods: return the element
+- `.contains(val)` method: returns boolean
