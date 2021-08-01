@@ -2,6 +2,9 @@
 - 071821 initial commit with some notes for future edit
 - 071821 add more code to the inheritance section, add syntax highlighting 
 - 073021 add List, elaborate on new syntax, modify inheritance
+- 073121 more List
+
+
 
 # Some new syntax
 ## `repeat` 
@@ -155,10 +158,39 @@ fun main(){
 
 
 # List and Mutable List 
+## List
+- ![List Documentation](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/)
 - List is immutable in Kotlin 
-  - `val numbers = List<Int> = listOf(1, 2, 3)`
+  - `val numbers: List<Int> = listOf(1, 2, 3)`
 - Access list members using `[]` 
   - but what if that index is invalid? In Java, you would generally use `.get` method which would return null value. 
   - You'd get `ArrayIndexOutOfBoundsException`.. 
 - `.first()` and `.last()` methods: return the element
 - `.contains(val)` method: returns boolean
+- `.reversed()` and `.sorted()`: does not affect the original list
+
+
+## Mutable List
+- `var numbers: MutableList<Int> = mutableListOf<Int>()`
+- `.add(value)`: add one element
+- `.addAll(List of variable)`: add multiple elements
+	- Of course, type should always match
+- `.remove(value)`: removes the first occurence
+- `.removeAt(index)`
+- `.clear()`: wipe clean
+
+## Iteration
+- supports `for (name in names){}` syntax!!
+- More examples from [Google Android Tutorial: Use Lists in Kotlin](https://developer.android.com/codelabs/basic-android-kotlin-training-lists?authuser=1&continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-kotlin-unit-2-pathway-3%3Fauthuser%3D1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-training-lists#3)
+
+```kotlin
+for (item in list) print(item) // Iterate over items in a list
+
+for (item in 'b'..'g') print(item) // Range of characters in an alphabet
+
+for (item in 1..5) print(item) // Range of numbers
+
+for (item in 5 downTo 1) print(item) // Going backward
+
+for (item in 3..6 step 2) print(item) // Prints: 35
+```
