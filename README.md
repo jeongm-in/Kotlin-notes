@@ -3,6 +3,7 @@
 - 071821 add more code to the inheritance section, add syntax highlighting 
 - 073021 add List, elaborate on new syntax, modify inheritance
 - 073121 more List
+- 080221 Collections: Set and Maps, Lambda
 
 
 
@@ -96,3 +97,51 @@ for (item in 5 downTo 1) print(item) // Going backward
 
 for (item in 3..6 step 2) print(item) // Prints: 35
 ```
+
+# Collections
+## Set
+- `setOf(values1, values2, ...)` and `mutableSetOf(values1, values2, ...)` 
+- `aList.toSet()` to convert a list to set 
+- set is not sorted (unlike C++ set)
+
+## Map
+```kotlin
+val myMap = mutableMapOf<String, Int>(
+	"A" to 1,
+	"B" to 2,
+	"C" to 3
+)
+```
+- use `map.put(key, value)` method or do `map[key] = value`
+## Methods for collections
+- `forEach`: special identifier `it` is used
+```kotlin
+myMap.forEach{print("${it.key}: ${it.value}")}
+```
+- `map` method: transformation to each item in collection
+```kotlin
+println(myMap.map { "${it.key}: ${it.value}" }.joinToString(", ") )
+// A: 1, B: 2, C: 3
+```
+  - note that `joinToString` can omit the last comma
+- `filter`: apply filter to find items that match particular condition
+```kotlin
+val filteredValues = myMap.filter { it.value >= 2}
+// {B=2, C=3}
+```
+  - returned type is `LinkedHashMap`
+
+# Lambda
+- curly braces that follow a function name without parenthesis
+  - `forEach{}`, `map{}`, `filter{}` 
+- must match the specified input and return types!
+```kotlin
+    val triple: (Int) -> Int = { a: Int -> a * 3 }
+    val tripleShorthand: (Int) -> Int = { it * 3 }
+
+    println(triple(5))
+    println(tripleShorthand(5))
+    
+    peopleAges.sortedWith(str1:String, str2:String -> str1.length - str2.length)
+```
+- if input values of lambda function are unused, can replace with `_`
