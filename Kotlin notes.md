@@ -4,7 +4,7 @@
 - 073021 add List, elaborate on new syntax, modify inheritance
 - 073121 more List
 - 080221 Collections: Set and Maps, Lambda
-
+- 090721 Null safety
 
 
 # Some new syntax
@@ -145,3 +145,9 @@ val filteredValues = myMap.filter { it.value >= 2}
     peopleAges.sortedWith(str1:String, str2:String -> str1.length - str2.length)
 ```
 - if input values of lambda function are unused, can replace with `_`
+
+# Null safety in Kotlin 
+Some variables can be null. In order to safely access such variables, use `?` 
+- `intent?.extras?.getString("letter").toString()`
+	- if `intent` is null, don't even attempt to access `extras`
+	- if `extras` is null, don't even attempt to call `getString()` 
